@@ -38,25 +38,33 @@ class MainActivity : ComponentActivity() {
         }
     }
     
+    //place holder lifecycle functions onResume, onStart, onPause, onStop, onDestroy
+
+    //when the activity is visible to the user the onStart function is called
     override fun onStart() {
         super.onStart()
     }
 
+    // when the activity is now interactive to the user
     override fun onResume() {
         super.onResume()
     }
 
+    // when the user leaves the activity
     override fun onPause() {
         super.onPause()
     }
 
+    // when the activity is hidden from the user
     override fun onStop() {
         super.onStop()
     }
-
+    //when the activity is destroyed and the app is closed
     override fun onDestroy() {
         super.onDestroy()
     }
+
+
 // Navigation Helper Methods
     private fun navigateToCreateNote() {
         val intent = Intent(this, CreateNoteActivity::class.java)
