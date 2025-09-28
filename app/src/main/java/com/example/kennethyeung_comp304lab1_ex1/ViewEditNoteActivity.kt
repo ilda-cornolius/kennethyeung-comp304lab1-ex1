@@ -37,9 +37,25 @@ class ViewEditNoteActivity : ComponentActivity() {
         }
     }
     
+    override fun onStart() {
+        super.onStart()
+    }
+
     override fun onResume() {
         super.onResume()
         // Could add refresh logic here later
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
 

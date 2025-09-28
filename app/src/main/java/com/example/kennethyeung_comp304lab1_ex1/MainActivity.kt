@@ -38,9 +38,24 @@ class MainActivity : ComponentActivity() {
         }
     }
     
-    // Only implementing the lifecycle methods that are actually needed
+    override fun onStart() {
+        super.onStart()
+    }
+
     override fun onResume() {
         super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun navigateToCreateNote() {
@@ -52,7 +67,6 @@ class MainActivity : ComponentActivity() {
         val intent = Intent(this, ViewEditNoteActivity::class.java)
         intent.putExtra("noteIndex", noteIndex)
         startActivity(intent)
-        // TODO: Maybe add some animation here
     }
 }
 
@@ -60,7 +74,6 @@ val notes: MutableList<Note> = mutableStateListOf(
     Note("Welcome to QuickNotes", "This is your first note. Tap the + button to create more notes!"),
     Note("Sample Note 2", "This is a sample note to demonstrate the app functionality."),
     Note("Sample Note 3", "You can edit any note by tapping on it from the home screen.")
-    // TODO: Maybe load from database later
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
