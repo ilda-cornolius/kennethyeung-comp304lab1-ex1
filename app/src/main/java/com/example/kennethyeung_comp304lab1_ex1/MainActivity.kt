@@ -20,9 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kennethyeung_comp304lab1_ex1.ui.theme.Kennethyeung_COMP304Lab1_Ex1Theme
 
-/**
- * MainActivity - Home Activity for QuickNotes App
- */
+
+
+ //main entry point of the application
 class MainActivity : ComponentActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
-
+// Navigation Helper Methods
     private fun navigateToCreateNote() {
         val intent = Intent(this, CreateNoteActivity::class.java)
         startActivity(intent)
