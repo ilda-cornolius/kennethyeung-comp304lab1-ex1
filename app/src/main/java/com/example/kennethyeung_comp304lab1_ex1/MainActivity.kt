@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-val notes: MutableList<Note> = mutableStateListOf(
+val notes = mutableStateListOf(
     Note("Welcome to QuickNotes", "This is your first note. Tap the + button to create more notes!"),
     Note("Sample Note 2", "This is a sample note to demonstrate the app functionality."),
     Note("Sample Note 3", "You can edit any note by tapping on it from the home screen.")
@@ -138,9 +138,10 @@ fun HomeScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(notes.size) { index ->
+                items(notes) { note ->
+                    val index = notes.indexOf(note)
                     NoteCard(
-                        note = notes[index],
+                        note = note,
                         onClick = { onNavigateToEdit(index) }
                     )
                 }
