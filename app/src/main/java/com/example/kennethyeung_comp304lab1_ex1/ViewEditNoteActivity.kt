@@ -16,13 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kennethyeung_comp304lab1_ex1.ui.theme.Kennethyeung_COMP304Lab1_Ex1Theme
 
-/**
- * ViewEditNoteActivity
- */
+
+
 class ViewEditNoteActivity : ComponentActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
+        //Using the componentActivity onCreate on a savedInstanceState
         super.onCreate(savedInstanceState)
+        //makes the app content extend behind the status and navigation bar
         enableEdgeToEdge()
         
         val noteIndex = intent.getIntExtra("noteIndex", -1)
@@ -30,37 +31,44 @@ class ViewEditNoteActivity : ComponentActivity() {
         setContent {
             Kennethyeung_COMP304Lab1_Ex1Theme {
                 ViewEditNoteScreen(
+                    
                     noteIndex = noteIndex,
+                    //callback function that closes the activity and returns to the previous screen
                     onNavigateBack = { finish() }
                 )
             }
         }
     }
     
+    //lifecycle function
     override fun onStart() {
         super.onStart()
     }
-
+    //lifecycle function
     override fun onResume() {
         super.onResume()
-        // Could add refresh logic here later
+
     }
 
+    //lifecycle function
     override fun onPause() {
         super.onPause()
     }
 
+    //lifecycle function
     override fun onStop() {
         super.onStop()
     }
-
+    //lifecycle function
     override fun onDestroy() {
         super.onDestroy()
     }
 }
-
+//Using experimental Matierial 3 features
 @OptIn(ExperimentalMaterial3Api::class)
+//Using a Jetpack Compose UI function
 @Composable
+//
 fun ViewEditNoteScreen(
     noteIndex: Int,
     onNavigateBack: () -> Unit
@@ -71,7 +79,6 @@ fun ViewEditNoteScreen(
     var showDeleteDialog by remember { mutableStateOf(false) }
     var hasUnsavedChanges by remember { mutableStateOf(false) }
     
-    // TODO: Maybe use a different approach for tracking changes
 
     LaunchedEffect(noteIndex) {
         if (noteIndex >= 0 && noteIndex < notes.size) {

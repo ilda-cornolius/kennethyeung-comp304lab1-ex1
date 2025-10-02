@@ -24,8 +24,10 @@ import com.example.kennethyeung_comp304lab1_ex1.ui.theme.Kennethyeung_COMP304Lab
 
  //main entry point of the application
 class MainActivity : ComponentActivity() {
-    
+    //onCreate function 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //the super class is the parent class of the activity (Component Activity)
+        // the parent class (componentactivity)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -53,7 +55,7 @@ class MainActivity : ComponentActivity() {
     // when the user leaves the activity
     override fun onPause() {
         super.onPause()
-    }
+    }                   
 
     // when the activity is hidden from the user
     override fun onStop() {
@@ -67,24 +69,33 @@ class MainActivity : ComponentActivity() {
 
 // Navigation Helper Methods
     private fun navigateToCreateNote() {
+        //creates a message to android saying that it wants to start the CreateNoteActivity
         val intent = Intent(this, CreateNoteActivity::class.java)
+        //starts the CreateNoteActivity
         startActivity(intent)
     }
 
     private fun navigateToEditNote(noteIndex: Int) {
+        //creates a message to android to open the ViewEditNoteActivity from the Current Activity
         val intent = Intent(this, ViewEditNoteActivity::class.java)
+        //adds additional data to the intent, showing the note key (label) and the note value (note position number)
         intent.putExtra("noteIndex", noteIndex)
+        //starts the ViewEditNoteActivity class
         startActivity(intent)
     }
 }
 
+//Creating the 3 note objects to show on the list
 val notes = mutableStateListOf(
     Note("Welcome to QuickNotes", "This is your first note. Tap the + button to create more notes!"),
     Note("Sample Note 2", "This is a sample note to demonstrate the app functionality."),
     Note("Sample Note 3", "You can edit any note by tapping on it from the home screen.")
 )
 
+//tells kotlin that experimental matieral 3 features are being used
 @OptIn(ExperimentalMaterial3Api::class)
+//makes HomeScreen a jetpack compuse ui function
+//the homescreen ui screen function
 @Composable
 fun HomeScreen(
     onNavigateToCreate: () -> Unit = {},
@@ -158,6 +169,9 @@ fun HomeScreen(
     }
 }
 
+
+//makes HomeScreen a jetpack compuse ui function
+//ui screen function for the notecard
 @Composable
 fun NoteCard(
     note: Note,
