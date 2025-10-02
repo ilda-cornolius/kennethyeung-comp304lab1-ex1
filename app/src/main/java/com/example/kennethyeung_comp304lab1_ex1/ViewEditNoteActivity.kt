@@ -40,26 +40,26 @@ class ViewEditNoteActivity : ComponentActivity() {
         }
     }
     
-    //lifecycle function
+    //lifecycle function when the user starts the activity
     override fun onStart() {
         super.onStart()
     }
-    //lifecycle function
+    //lifecycle function when the activity is active to the user
     override fun onResume() {
         super.onResume()
 
     }
 
-    //lifecycle function
+    //lifecycle function when the user leaves the activity
     override fun onPause() {
         super.onPause()
     }
 
-    //lifecycle function
+    //lifecycle function when the activity is hidden from the user 
     override fun onStop() {
         super.onStop()
     }
-    //lifecycle function
+    //lifecycle function when the activity is destroyed and hte app is closed
     override fun onDestroy() {
         super.onDestroy()
     }
