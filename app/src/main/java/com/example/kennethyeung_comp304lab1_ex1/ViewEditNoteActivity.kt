@@ -59,7 +59,7 @@ class ViewEditNoteActivity : ComponentActivity() {
     override fun onStop() {
         super.onStop()
     }
-    //lifecycle function when the activity is destroyed and hte app is closed
+    //lifecycle function when the activity is destroyed and the app is closed
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -68,15 +68,28 @@ class ViewEditNoteActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 //Using a Jetpack Compose UI function
 @Composable
-//
+//A UI function for the edit note screen 
+//every time a user clicks the screen this function is ran again
 fun ViewEditNoteScreen(
+    //using a int variable called noteIndex
     noteIndex: Int,
+    //using a function that returns void (Unit)
     onNavigateBack: () -> Unit
 ) {
+
+    //every time a user interacts with the title it will save the state it was in before continuing
     var title by remember { mutableStateOf("") }
+
+    //every time a user interacts with the content it will save the state it was in before continuing
     var content by remember { mutableStateOf("") }
+
+    //every time a user interacts with the loadingbar it will save the state it was in before continuing
     var isLoading by remember { mutableStateOf(true) }
+
+    //every time a user interacts with the show delete dialog bar it will save the state it was in before continuing
     var showDeleteDialog by remember { mutableStateOf(false) }
+
+    //every time a user interacts with the title it will save the state it was in before continuing
     var hasUnsavedChanges by remember { mutableStateOf(false) }
     
 
@@ -96,6 +109,7 @@ fun ViewEditNoteScreen(
         if ((title.isNotBlank() || content.isNotBlank()) && noteIndex >= 0 && noteIndex < notes.size) {
             val existingNote = notes[noteIndex]
             existingNote.title = title.ifBlank { "Untitled" }
+
             existingNote.content = content
             hasUnsavedChanges = false
         }
@@ -254,7 +268,10 @@ fun ViewEditNoteScreen(
     }
 }
 
+//it is a preview function
 @Preview(showBackground = true)
+//it is a ui compoasable function
+//mockup screen does not run during development
 @Composable
 fun ViewEditNoteScreenPreview() {
     Kennethyeung_COMP304Lab1_Ex1Theme {
