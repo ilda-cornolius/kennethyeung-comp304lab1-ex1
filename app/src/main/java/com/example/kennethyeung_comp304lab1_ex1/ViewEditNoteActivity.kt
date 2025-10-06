@@ -16,14 +16,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kennethyeung_comp304lab1_ex1.ui.theme.Kennethyeung_COMP304Lab1_Ex1Theme
 
-
-
 class ViewEditNoteActivity : ComponentActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Using the componentActivity onCreate on a savedInstanceState
+        // Using the componentActivity onCreate on a savedInstanceState
         super.onCreate(savedInstanceState)
-        //makes the app content extend behind the status and navigation bar
+        // makes the app content extend behind the status and navigation bar
         enableEdgeToEdge()
         
         val noteIndex = intent.getIntExtra("noteIndex", -1)
@@ -31,92 +29,98 @@ class ViewEditNoteActivity : ComponentActivity() {
         setContent {
             Kennethyeung_COMP304Lab1_Ex1Theme {
                 ViewEditNoteScreen(
-                    
                     noteIndex = noteIndex,
-                    //callback function that closes the activity and returns to the previous screen
+                    // callback function that closes the activity and returns to the previous screen
                     onNavigateBack = { finish() }
                 )
             }
         }
     }
     
-    //lifecycle function when the user starts the activity
+    // lifecycle function when the user starts the activity  
     override fun onStart() {
         super.onStart()
     }
-    //lifecycle function when the activity is active to the user
+    
+    // lifecycle function when the activity is active to the user
     override fun onResume() {
         super.onResume()
-
     }
 
-    //lifecycle function when the user leaves the activity
+    // lifecycle function when the user leaves the activity
     override fun onPause() {
         super.onPause()
     }
 
-    //lifecycle function when the activity is hidden from the user 
+    // lifecycle function when the activity is hidden from the user 
     override fun onStop() {
         super.onStop()
     }
-    //lifecycle function when the activity is destroyed and the app is closed
+    
+    // lifecycle function when the activity is destroyed and the app is closed
     override fun onDestroy() {
         super.onDestroy()
     }
 }
-//Using experimental Matierial 3 features
+
+// Using experimental Material 3 features
 @OptIn(ExperimentalMaterial3Api::class)
-//Using a Jetpack Compose UI function
+// Using a Jetpack Compose UI function
 @Composable
-//A UI function for the edit note screen 
-//every time a user clicks the screen this function is ran again
+// A UI function for the edit note screen 
+// every time a user clicks the screen this function is ran again
+
+
 fun ViewEditNoteScreen(
-    //using a int variable called noteIndex
+    // using a int variable called noteIndex
     noteIndex: Int,
-    //using a function that returns void (Unit)
+    // using a function that returns void (Unit)
     onNavigateBack: () -> Unit
 ) {
 
-    //every time a user interacts with the title it will save the state it was in before continuing
+    // everytime the component recomposes the title's state will be saved before continuing
     var title by remember { mutableStateOf("") }
 
-    //every time a user interacts with the content it will save the state it was in before continuing
+    // everytime the component recomposes the content's state will be saved before continuing
     var content by remember { mutableStateOf("") }
 
-    //every time a user interacts with the loadingbar it will save the state it was in before continuing
+    // everytime the component recomposes the isLoading's state will be saved before continuing
     var isLoading by remember { mutableStateOf(true) }
 
-    //every time a user interacts with the show delete dialog bar it will save the state it was in before continuing
+    // everytime the component recomposes the showDeleteDialog's state will be saved before continuing
     var showDeleteDialog by remember { mutableStateOf(false) }
 
-    //every time a user interacts with the title it will save the state it was in before continuing
+    // everytime the component recomposes the asUnsavedChanges's state will be saved before continuing
     var hasUnsavedChanges by remember { mutableStateOf(false) }
     
-
+    // when the noteIndex changes the launchedEffect function activates
     LaunchedEffect(noteIndex) {
+        // if there is content in the note 
+        // the note object exists outside of the function
+        // update the note value
         if (noteIndex >= 0 && noteIndex < notes.size) {
             val note = notes[noteIndex]
             title = note.title
             content = note.content
             isLoading = false
         } else {
-            onNavigateBack()
-        }
+            onNavigateBack()        
+        }                   
         // Log.d("ViewEdit", "Loaded note at index $noteIndex")
     }
 
+    // global update of the note object
     fun saveChanges() {
         if ((title.isNotBlank() || content.isNotBlank()) && noteIndex >= 0 && noteIndex < notes.size) {
             val existingNote = notes[noteIndex]
             existingNote.title = title.ifBlank { "Untitled" }
-
             existingNote.content = content
             hasUnsavedChanges = false
         }
         onNavigateBack()
-        // Could add a toast message here
     }
 
+    // removes the note object at noteindex on a global scale
     fun deleteNote() {
         if (noteIndex >= 0 && noteIndex < notes.size) {
             notes.removeAt(noteIndex)
@@ -124,11 +128,13 @@ fun ViewEditNoteScreen(
         onNavigateBack()
     }
 
+    // a function for a potential function to be executed when the user goes back in navigation
     fun handleBackNavigation() {
         // This could be improved with a dialog later
         onNavigateBack()
     }
 
+    // if the activity is loading
     if (isLoading) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -139,6 +145,7 @@ fun ViewEditNoteScreen(
         return
     }
 
+    // the design of the ViewEditNoteActivity class
     Scaffold(
         topBar = {
             TopAppBar(
@@ -183,6 +190,7 @@ fun ViewEditNoteScreen(
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
+            // The textfield for the title field of the note
             OutlinedTextField(
                 value = title,
                 onValueChange = { 
@@ -197,6 +205,7 @@ fun ViewEditNoteScreen(
             
             Spacer(modifier = Modifier.height(16.dp))
             
+            // the textfield for the content field of the note
             OutlinedTextField(
                 value = content,
                 onValueChange = { 
@@ -268,10 +277,10 @@ fun ViewEditNoteScreen(
     }
 }
 
-//it is a preview function
+// it is a preview function
 @Preview(showBackground = true)
-//it is a ui compoasable function
-//mockup screen does not run during development
+// it is a ui composable function
+// mockup screen does not run during development
 @Composable
 fun ViewEditNoteScreenPreview() {
     Kennethyeung_COMP304Lab1_Ex1Theme {
