@@ -203,6 +203,7 @@ fun ViewEditNoteScreen(
                 singleLine = true
             )
             
+            //space between two text fields
             Spacer(modifier = Modifier.height(16.dp))
             
             // the textfield for the content field of the note
@@ -220,8 +221,10 @@ fun ViewEditNoteScreen(
                 minLines = 10
             )
             
+            //vertical space betweeen another textfield object
             Spacer(modifier = Modifier.height(16.dp))
             
+            //the ui for the save changes button 
             Button(
                 onClick = { saveChanges() },
                 modifier = Modifier.fillMaxWidth(),
@@ -230,8 +233,10 @@ fun ViewEditNoteScreen(
                 Text("Save Changes")
             }
             
+            //vertical space between a button and another button
             Spacer(modifier = Modifier.height(16.dp))
             
+            //the ui for the delete note button
             Button(
                 onClick = { showDeleteDialog = true },
                 modifier = Modifier.fillMaxWidth(),
@@ -244,7 +249,10 @@ fun ViewEditNoteScreen(
         }
     }
 
+    //if the user presses the delete note button on the edit note screen it will show an alert
     if (showDeleteDialog) {
+        
+        //sets off an alert dialog
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
             title = {
@@ -253,6 +261,7 @@ fun ViewEditNoteScreen(
             text = {
                 Text("Are you sure you want to delete this note? This action cannot be undone.")
             },
+            //the confirm ui text button
             confirmButton = {
                 TextButton(
                     onClick = { 
@@ -266,6 +275,7 @@ fun ViewEditNoteScreen(
                     )
                 }
             },
+            //the dismiss ui button
             dismissButton = {
                 TextButton(
                     onClick = { showDeleteDialog = false }

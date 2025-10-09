@@ -136,12 +136,18 @@ fun HomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+
+                    //a ui text box
                     Text(
                         text = "No notes yet",
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+
+                    //a spacer
                     Spacer(modifier = Modifier.height(8.dp))
+
+                    //a ui textbox
                     Text(
                         text = "Tap the + button to create your first note",
                         style = MaterialTheme.typography.bodyMedium,
@@ -185,6 +191,7 @@ fun NoteCard(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+           //text field for the title 
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.titleMedium,
@@ -193,8 +200,10 @@ fun NoteCard(
                 overflow = TextOverflow.Ellipsis
             )
             
+            //adds a space between the text fields
             Spacer(modifier = Modifier.height(8.dp))
             
+            //a text field for the content
             Text(
                 text = note.content.truncate(150),
                 style = MaterialTheme.typography.bodyMedium,
@@ -211,6 +220,7 @@ private fun String.truncate(maxLength: Int = 100): String {
     return "${substring(0, maxLength)}..."
 }
 
+//a preview function that shows how the HomeScreen Activity will look like without running the app
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {

@@ -20,6 +20,7 @@ import com.example.kennethyeung_comp304lab1_ex1.ui.theme.Kennethyeung_COMP304Lab
  */
 class CreateNoteActivity : ComponentActivity() {
     
+    //when the CreateNoteA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,38 +33,48 @@ class CreateNoteActivity : ComponentActivity() {
         }
     }
     
+    //lifecycle methods
+
+    //when the activity becomes visible the onStart method is called
     override fun onStart() {
         super.onStart()
     }
 
+    //when the activity becomes interactive then the OnResume method is called
     override fun onResume() {
         super.onResume()
     }
 
+    //when the activity loses focus the onPause method is called
     override fun onPause() {
         super.onPause()
     }
 
+    //when the activity becomes hidden the onStop method is called
     override fun onStop() {
         super.onStop()
     }
 
+    //when the activity is destroyed the onDestroy method activates
     override fun onDestroy() {
         super.onDestroy()
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+//denotes that it is a android ui function
 @Composable
+//the create note screen function
 fun CreateNoteScreen(
     onNavigateBack: () -> Unit
 ) {
+
+    //on a ui refresh the title, content and focusmanger states are saved
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     
-    // Could add validation here later
-
+    //the save note function
     fun saveNote() {
         if (title.isNotBlank() || content.isNotBlank()) {
             val newNote = Note(
@@ -76,7 +87,9 @@ fun CreateNoteScreen(
         // Could add success feedback here
     }
 
+    //the design of the create note screen
     Scaffold(
+        //the design of the top bar
         topBar = {
             TopAppBar(
                 title = {
@@ -104,12 +117,15 @@ fun CreateNoteScreen(
             )
         }
     ) { paddingValues ->
+        //the value of each column
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
+
+            //the title text field values
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
@@ -119,8 +135,10 @@ fun CreateNoteScreen(
                 singleLine = true
             )
             
+            //a vertical space
             Spacer(modifier = Modifier.height(16.dp))
             
+            //the content text field values
             OutlinedTextField(
                 value = content,
                 onValueChange = { content = it },
@@ -132,8 +150,10 @@ fun CreateNoteScreen(
                 minLines = 10
             )
             
+            //a horizontal space in the ui
             Spacer(modifier = Modifier.height(16.dp))
             
+            //a button in the ui
             Button(
                 onClick = { saveNote() },
                 modifier = Modifier.fillMaxWidth(),
@@ -145,6 +165,7 @@ fun CreateNoteScreen(
     }
 }
 
+// preview function that shows how the CreateNoteActivity screen will look like without running the app
 @Preview(showBackground = true)
 @Composable
 fun CreateNoteScreenPreview() {
