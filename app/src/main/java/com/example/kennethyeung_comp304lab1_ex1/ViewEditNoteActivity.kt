@@ -184,6 +184,7 @@ fun ViewEditNoteScreen(
             )
         }
     ) { paddingValues ->
+        //the properties of each button or textfield 
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -251,7 +252,7 @@ fun ViewEditNoteScreen(
 
     //if the user presses the delete note button on the edit note screen it will show an alert
     if (showDeleteDialog) {
-        
+
         //sets off an alert dialog
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },

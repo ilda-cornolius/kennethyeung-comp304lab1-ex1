@@ -101,8 +101,11 @@ fun HomeScreen(
     onNavigateToCreate: () -> Unit = {},
     onNavigateToEdit: (Int) -> Unit = {}
 ) {
+    //denotes that it is the ui of kotlin app
     Scaffold(
         topBar = {
+
+            //denotes the top bar of the app.
             TopAppBar(
                 title = {
                     Text(
@@ -113,6 +116,8 @@ fun HomeScreen(
                 }
             )
         },
+        
+        
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onNavigateToCreate,
@@ -132,6 +137,7 @@ fun HomeScreen(
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
             ) {
+                //the properties of each column such as a textbox
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
@@ -156,6 +162,7 @@ fun HomeScreen(
                 }
             }
         } else {
+            //the design of each lazycolumn, in this instance each of the notes
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -163,6 +170,7 @@ fun HomeScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                //
                 items(notes) { note ->
                     val index = notes.indexOf(note)
                     NoteCard(
@@ -214,6 +222,7 @@ fun NoteCard(
         }
     }
 }
+
 
 private fun String.truncate(maxLength: Int = 100): String {
     if (length <= maxLength) return this
